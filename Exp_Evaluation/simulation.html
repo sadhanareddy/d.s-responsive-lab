@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="simulation.css">
+  </head>
+  <body onload="hideImage()">
+  	<div id="header" class="well well-sm">Expression Evaluation Using Stack</div>
+
+  	<div class="container"> <!-- start of the container -->
+
+     <div class="row"> 
+      <div class="col-sm-12">
+        <p id="infixId"></p>
+        <p id="arrow1">&darr;</p>
+        <table id="infixtable" border="1">
+          <tr id="rowlen"></tr>
+        </table>
+      </div>
+     </div>
+
+     <div class="row">
+      <div class="col-sm-12">
+        <p id="postfixId"></p>
+        <p id="arrow2">&darr;</p>
+        <table id="infixtable1" border="1">
+          <tr id="rowlen1"></tr>
+        </table>
+      </div>
+     </div>
+
+     <div class="row">
+      <div class="col-sm-12">
+        <ul id="eval" style="list-style-type:none">
+        <li id="num1"></li>
+        <li id="op"></li>
+        <li id="num2"></li>
+        <li id="res"></li>
+      </ul>
+      </div>
+     </div>
+     <div>
+      
+     <div class="row"><!-- start of third row -->
+      <div class="col-sm-5" id="calc"> <!-- column one-->
+        <h1>Calculator</h1>
+        <table>  <!-- start of table -->
+          <form name="expression"  id="infix" onclick="">
+            <input  id="textbox" class="white" value="**press C and start**" name="ans" >
+            <tr>
+              <td><input type="button" class="button white" value="( " onClick="document.expression.ans.value+='('"></td>
+              <td><input type="button" class="button white" value=")" onClick="document.expression.ans.value+=')'"></td>
+              <td colspan="2">
+                <input type="button" class="button grey" value="Backspace" OnClick="document.expression.ans.value = document.expression.ans.value.substring(0,document.expression.ans.value.length*1 -1)"></td>
+              <td><input type="button" id="keyC" class="button white" value="C" onclick="document.expression.ans.value='' ;  clear()"></td>
+            </tr><br>
+
+            <tr>
+              <td><input type="button" value="7" class="button white" onClick="document.expression.ans.value+='7'"></td>
+              <td><input type="button" value="8" class="button white" onClick="document.expression.ans.value+='8'"></td>
+              <td><input type="button" value="9" class="button white" onClick="document.expression.ans.value+='9'"></td>
+              <td><input type="button" value="/" class="button white" onClick="document.expression.ans.value+='/'"></td>
+              <td><input type="button" value="^" class="button white" onClick="document.expression.ans.value+='^'"></td>
+            </tr>
+
+            <tr>
+              <td><input type="button" value="4" class="button white" onClick="document.expression.ans.value+='4'"></td>
+              <td><input type="button" value="5" class="button white" onClick="document.expression.ans.value+='5'"></td>
+              <td><input type="button" value="6" class="button white" onClick="document.expression.ans.value+='6'"></td>
+              <td><input type="button" value="*" class="button white" onClick="document.expression.ans.value+='*'"></td>
+              <td><input type="button" value="%" class="button white" onClick="document.expression.ans.value+='%'"></td>
+            </tr><br>
+
+            <tr>
+              <td><input type="button" value="1" class="button white" onClick="document.expression.ans.value+='1'"></td>
+              <td><input type="button" value="2" class="button white" onClick="document.expression.ans.value+='2'"></td>
+              <td><input type="button" value="3" class="button white"  onClick="document.expression.ans.value+='3'"></td>
+              <td><input type="button" value="-" class="button white"  onclick="document.expression.ans.value+='-'"></td>
+              <td><input type="button" value="1/x" class="button white"onClick="document.expression.ans.value+='1/x'"></td>
+            </tr>
+
+            <tr>
+              <td><input type="button" value="0" class="button white" onClick="document.expression.ans.value+='0'"></td>
+              <td><input type="button" value="+/-" class="button white"onClick="document.expression.ans.value+='+/-'"></td>
+              <td><input type="button" value="." class="button white" onClick="document.expression.ans.value+='.'"></td>
+              <td><input type="button" value="+" class="button white"onClick="document.expression.ans.value+='+'"></td>
+              <td><input type="button" value="=" id="equalkey" class="button white" onClick="showImage();checkVal()  ; document.expression.ans.value=eval(document.expression.ans.value)" ; /></td>
+              <td><img width="30" height="35" src="Images/rewind.png"></td>&nbsp;
+              <td> <img width="35" height="40" src="Images/play.png"></td>&nbsp;
+              <td><img width="60" align="left" height="70" src="Images/arrow.png"></td>
+            </tr>
+          </form>
+        </table>  <!-- end of table -->
+      </div>
+
+      <div class="col-sm-3">  <!-- column two -->
+        <table id="stack" border="2">
+          <tr id="row9"><td class="stackrow"></td></tr>
+          <tr id="row8"><td class="stackrow"></td></tr>
+          <tr id="row7"><td class="stackrow"></td></tr>
+          <tr id="row6"><td class="stackrow"></td></tr>
+          <tr id="row5"><td class="stackrow"></td></tr>
+          <tr id="row4"><td class="stackrow"></td></tr>
+          <tr id="row3"><td class="stackrow"></td></tr>
+          <tr id="row2"><td class="stackrow"></td></tr>
+          <tr id="row1"><td class="stackrow"></td></tr>
+        </table>
+      </div>  <!-- end of column two -->
+
+      <div class="col-sm-4">  <!-- column three -->
+        <p id="instrId" class="instruction"></p>
+      </div>  <!-- end of column three -->
+      </div><!--end of third row-->
+<div id ="animate"></div>
+    </div><!-- end of the container -->
+  </body>
+  <script src="simulation.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  </html>
